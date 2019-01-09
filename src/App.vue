@@ -98,6 +98,14 @@
           <md-tab md-icon="dns"
                   md-label="Déployer">
 
+            <p>
+              Simple comme utiliser ces 2 commandes :
+            </p>
+            <ul class="cli">
+              <li>$ npm run build -- --mode local</li>
+              <li>$ firebase deploy</li>
+            </ul>
+
           </md-tab>
         </md-tabs>
       </div>
@@ -190,6 +198,15 @@ export default {
           .md-icon {
             color: rgb(244, 67, 54);
           }
+        }
+      }
+
+      .cli {
+        list-style-type: none;
+        background-color: #FAFAFA;
+
+        li {
+          padding: 10px 0;
         }
       }
     }
