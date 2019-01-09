@@ -53,7 +53,7 @@
                               md-icon="lock_open"
                               md-label="Authentifié"
                               md-rounded
-                              v-if="!isLogged">
+                              v-if="isLogged">
                 <md-button @click="signOut">Se déconnecter</md-button>
               </md-empty-state>
 
@@ -69,7 +69,30 @@
 
           <md-tab md-icon="save"
                   md-label="Persister">
+            <form @submit.prevent="saveData"
+                  novalidate>
 
+              <md-field>
+                <label>Nom complet</label>
+                <md-input v-model.trim="fullname"/>
+              </md-field>
+
+              <p class="actions">
+                <span class="space"></span>
+                <md-button class="md-primary"
+                           type="submit">
+                  Ajouter
+                </md-button>
+              </p>
+            </form>
+
+            <md-list v-if="Object.keys(persons).length > 0">
+              <md-divider/>
+              <md-list-item :key="`person_${id}`"
+                            v-for="(person, id) in persons">
+                {{ person }}
+              </md-list-item>
+            </md-list>
           </md-tab>
 
           <md-tab md-icon="dns"
@@ -90,12 +113,18 @@ export default {
       isLogged: false,
       login: null,
       password: null,
+      persons: {},
+      fullname: null,
     };
   },
   created() {
-    // TODO check if user is logged
+    this.checkIfLogged();
+    this.getPersons();
   },
   methods: {
+    checkIfLogged() {
+
+    },
     signIn() {
       // TODO authenticate with login/password
     },
@@ -107,6 +136,12 @@ export default {
     },
     createNewAccount() {
       // TODO create new account with login/password
+    },
+    getPersons() {
+      // TODO find all persons saved in Firestore
+    },
+    saveData() {
+      // TODO save a new person in Firestore
     },
   },
 };
