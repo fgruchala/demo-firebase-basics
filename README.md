@@ -1,4 +1,4 @@
-# Demo / Basics // Firebase
+# Demo / Basics // Firebase 🔥
 ## Prerequisites
 
 ### On the cloud side
