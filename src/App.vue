@@ -41,8 +41,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import url('');
-
   #app {
     height: 100%;
 
