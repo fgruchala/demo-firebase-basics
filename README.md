@@ -1,29 +1,59 @@
-# demo-firebase-authentification
+# Demo / Basics // Firebase
+## Prerequisites
 
-## Project setup
-```
-npm install
-```
+### On the cloud side
+* Go to the Firebase console https://console.firebase.google.com/
+* Create a new project
+* Copy the configuration via "Home > Add a new application"
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### On the code side
+Once you have cloned this repo, you can :
 
-### Compiles and minifies for production
-```
-npm run build
-```
+* Install globally the tooling
 
-### Run your tests
 ```
-npm run test
+$ npm install -g firebase-tools
 ```
 
-### Lints and fixes files
+* Install all local dependencies
+
 ```
-npm run lint
+$ npm install
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* Create a file .env.local with this content
+
+```
+VUE_APP_FIREBASE_API_KEY=<COPIED_CONFIGURATION>
+VUE_APP_FIREBASE_AUTH_DOMAIN=<COPIED_CONFIGURATION>
+VUE_APP_FIREBASE_PROJECT_ID=<COPIED_CONFIGURATION>
+```
+
+### Finally
+Play with it :
+
+```
+$ npm run serve
+```
+
+## What's in the box ?????
+### Authentification
+In this part, you will see :
+* How to create a new account
+* How to sign in with it
+* How to sign in with Google SSO
+* How to sign out
+
+### Persistence
+In this part, you will see :
+* How to create a new Firestore DB
+* How to add new document on it
+* How to get datas from it and in realtime
+
+### Deployment
+In this part, you will see :
+* How to deploy your site
+
+# Contact via [Issues](https://github.com/fgruchala/demo-firebase-basics/issues)
+Helpful for **question**, **bug** and **contribution request**.
+
