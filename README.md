@@ -1,6 +1,10 @@
 # Demo / Basics // Firebase 🔥
-## Prerequisites
+## Branches
 
+**master** contains the solutions, that is to say, with implementation of Firebase.
+**no-firebase-land** is to implement by your own.
+
+## Prerequisites
 ### On the cloud side
 * Go to the Firebase console https://console.firebase.google.com/
 * Create a new project
