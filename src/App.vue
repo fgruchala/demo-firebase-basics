@@ -90,7 +90,7 @@
               <md-divider/>
               <md-list-item :key="`person_${id}`"
                             v-for="(person, id) in persons">
-                {{ person }}
+                {{ person.fullname }}
               </md-list-item>
             </md-list>
           </md-tab>
@@ -114,6 +114,18 @@
 </template>
 
 <script>
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
+firebase.initializeApp({
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+});
+firebase.firestore()
+  .settings({ timestampsInSnapshots: true });
+
 export default {
   name: 'app',
   data() {
@@ -131,25 +143,60 @@ export default {
   },
   methods: {
     checkIfLogged() {
-
+      firebase
+        .auth()
+        .onAuthStateChanged((user) => {
+          console.log(user);
+          this.isLogged = user !== null;
+        });
     },
     signIn() {
-      // TODO authenticate with login/password
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.login, this.password)
+        .then(user => console.log(user))
+        .catch(err => console.error(err));
     },
     signInWithGoogle() {
-      // TODO authenticate with Google SSO
+      firebase
+        .auth()
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(user => console.log(user))
+        .catch(err => console.error(err));
     },
     signOut() {
-      // TODO sign out
+      firebase
+        .auth()
+        .signOut()
+        .then(() => console.log('Je suis déconnecté ...'))
+        .catch(err => console.error(err));
     },
     createNewAccount() {
-      // TODO create new account with login/password
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.login, this.password)
+        .then(user => console.log(user))
+        .catch(err => console.error(err));
     },
     getPersons() {
-      // TODO find all persons saved in Firestore
+      firebase
+        .firestore()
+        .collection('persons')
+        .onSnapshot(
+          (querySnapshot) => {
+            const persons = {};
+            querySnapshot.forEach(doc => persons[doc.id] = doc.data());
+            this.persons = persons;
+          },
+          err => console.log(err));
     },
     saveData() {
-      // TODO save a new person in Firestore
+      firebase
+        .firestore()
+        .collection('persons')
+        .add({ fullname: this.fullname })
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
     },
   },
 };
