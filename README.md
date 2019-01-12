@@ -2,6 +2,7 @@
 ## Branches
 
 **master** contains the solutions, that is to say, with implementation of Firebase.
+
 **no-firebase-land** is to implement by your own.
 
 ## Prerequisites
