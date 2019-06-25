@@ -123,8 +123,6 @@ firebase.initializeApp({
   authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
 });
-firebase.firestore()
-  .settings({ timestampsInSnapshots: true });
 
 export default {
   name: 'app',
